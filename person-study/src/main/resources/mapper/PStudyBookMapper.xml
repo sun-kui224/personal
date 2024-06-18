@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.person.study.mapper.PStudyBookMapper">
+
+    <resultMap type="PStudyBook" id="PStudyBookResult">
+                <result property="id"    column="id"    />
+                <result property="bookAuthor"    column="book_author"    />
+                <result property="bookPrice"    column="book_price"    />
+                <result property="bookName"    column="book_name"    />
+                <result property="wordNumber"    column="word_number"    />
+                <result property="publicationPeriod"    column="publication_period"    />
+                <result property="isBuy"    column="is_buy"    />
+                <result property="bookDescribe"    column="book_describe"    />
+                <result property="onlineAddress"    column="online_address"    />
+                <result property="delFlag"    column="del_flag"    />
+                <result property="coverPhoto"    column="cover_photo"    />
+                <result property="createBy"    column="create_by"    />
+                <result property="createDate"    column="create_date"    />
+                <result property="updateDate"    column="update_date"    />
+                <result property="labelList"    column="label_list"    />
+    </resultMap>
+
+    <sql id="selectPStudyBookVo">
+        select id,book_author,book_price, book_name,word_number, publication_period,is_buy,
+               book_describe,online_address, del_flag, cover_photo, create_by, create_date, update_date from p_study_book
+    </sql>
+
+    <select id="selectPStudyBookList" parameterType="BookQuery" resultMap="PStudyBookResult">
+        select sb.id,sb.book_author,sb.book_price, sb.book_name,sb.word_number, sb.publication_period,sb.is_buy,
+        sb.book_describe,sb.online_address, sb.del_flag, sb.cover_photo, sb.create_by, sb.create_date,
+        CONCAT('[', GROUP_CONCAT(JSON_OBJECT('id', pl.id, 'labelName', pl.label_name)),']') AS label_list
+        from p_study_book sb LEFT JOIN p_label_corr lc ON sb.id = lc.out_id LEFT JOIN p_person_label pl ON lc.label_id = pl.id
+        where sb.del_flag = 0
+        <if test="bookName != null  and bookName != ''">
+            <bind name="bookStr" value=" '%' +bookName+ '%'"/>
+            and sb.book_name like #{bookStr}
+        </if>
+        GROUP BY
+        sb.id,sb.book_author,sb.book_price, sb.book_name,sb.word_number, sb.publication_period,sb.is_buy,
+        sb.book_describe,sb.online_address, sb.del_flag, sb.cover_photo, sb.create_by, sb.create_date
+        order by sb.create_date desc
+    </select>
+
+    <insert id="insertPStudyBook" parameterType="PStudyBook">
+        insert into p_study_book
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="bookAuthor != null">book_author,</if>
+            <if test="bookPrice != null">book_price,</if>
+            <if test="bookName != null">book_name,</if>
+            <if test="wordNumber != null">word_number,</if>
+            <if test="publicationPeriod != null">publication_period,</if>
+            <if test="isBuy != null">is_buy,</if>
+            <if test="bookDescribe != null">book_describe,</if>
+            <if test="onlineAddress != null">online_address,</if>
+            <if test="delFlag != null">del_flag,</if>
+            <if test="coverPhoto != null">cover_photo,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createDate != null">create_date,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="bookAuthor != null">#{bookAuthor},</if>
+            <if test="bookPrice != null">#{bookPrice},</if>
+            <if test="bookName != null">#{bookName},</if>
+            <if test="wordNumber != null">#{wordNumber},</if>
+            <if test="publicationPeriod != null">#{publicationPeriod},</if>
+            <if test="isBuy != null">#{isBuy},</if>
+            <if test="bookDescribe != null">#{bookDescribe},</if>
+            <if test="onlineAddress != null">#{onlineAddress},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+            <if test="coverPhoto != null">#{coverPhoto},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createDate != null">#{createDate},</if>
+         </trim>
+    </insert>
+
+    <update id="updatePStudyBook" parameterType="PStudyBook">
+        update p_study_book
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="bookAuthor != null">book_author = #{bookAuthor},</if>
+            <if test="bookPrice != null">book_price = #{bookPrice},</if>
+            <if test="bookName != null">book_name = #{bookName},</if>
+            <if test="wordNumber != null">word_number = #{wordNumber},</if>
+            <if test="publicationPeriod != null">publication_period = #{publicationPeriod},</if>
+            <if test="isBuy != null">is_buy = #{isBuy},</if>
+            <if test="bookDescribe != null">book_describe = #{bookDescribe},</if>
+            <if test="onlineAddress != null">online_address = #{onlineAddress},</if>
+            <if test="coverPhoto != null">cover_photo = #{coverPhoto},</if>
+            <if test="updateDate != null">update_date = #{updateDate},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deletePStudyBookById" parameterType="Long">
+        update p_study_book set del_flag = 1 where id = #{id}
+    </delete>
+
+</mapper>

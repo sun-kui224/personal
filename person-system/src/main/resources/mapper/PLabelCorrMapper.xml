@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.person.system.mapper.PLabelCorrMapper">
+
+    <resultMap type="PLabelCorr" id="PLabelCorrResult">
+                <result property="labelId"    column="label_id"    />
+                <result property="outId"    column="out_id"    />
+    </resultMap>
+
+    <sql id="selectPLabelCorrVo">
+        select label_id, out_id from p_label_corr
+    </sql>
+
+    <select id="selectLabelResourceCount" resultType="java.lang.Integer">
+       select count(*) from p_label_corr where out_id = #{outId}
+    </select>
+
+    <insert id="insertLabelResource">
+        INSERT INTO p_label_corr (label_id, out_id) VALUES
+        <foreach item="item" index="index" collection="labelIds" separator=" , ">
+            (#{item},#{outId} )
+        </foreach>
+    </insert>
+
+    <delete id="deleteLabelResource">
+       delete from p_label_corr where out_id = #{outId}
+    </delete>
+</mapper>

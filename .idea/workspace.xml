@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b7424a0e-b779-4be2-96d5-9c3b6b1f18eb" name="Changes" comment="初次提交代码e">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/JavaSceneConfigState.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/person-admin/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/person-admin/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/person-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/person-common/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/person-common/src/main/java/com/person/common/config/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/person-common/src/main/java/com/person/common/config/SwaggerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Vue Composition API Component" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\work\maven\repository" />
+        <option name="mavenHome" value="$PROJECT_DIR$/../../../../../Software/maven/apache-maven-3.9.6" />
+        <option name="userSettingsFile" value="D:\work\maven\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2g8F2O7aMNlPYKGb1SZSBCwoK8Z" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="showExcludedFiles" value="false" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.AjaxResult.executor": "Debug",
+    "Application.BaseException.executor": "Run",
+    "Application.CommonController.executor": "Debug",
+    "Application.FileUtils.executor": "Run",
+    "Application.IdUtils.executor": "Debug",
+    "Application.LocalFileService.executor": "Debug",
+    "Application.LoginService.executor": "Debug",
+    "Application.SecurityUtils.executor": "Debug",
+    "Maven.person [clean].executor": "Run",
+    "Maven.person-system [clean].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.PersonalApplication.executor": "Debug",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "1.8",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/projectFile/project/study/personal",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "ts.external.directory.path": "D:\\IntelliJ IDEA 2023.3.5\\IntelliJ IDEA 2023.2.3\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "vue.recent.templates": [
+      "Vue Composition API Component"
+    ]
+  }
+}]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\projectFile\project\ruoyiVue\RuoYi-Vue-master\personal\ui-p\src\api\personUtil" />
+      <recent name="D:\projectFile\project\ruoyiVue\RuoYi-Vue-master\personal\ui-p\src\views\system\dict\components" />
+      <recent name="D:\projectFile\project\ruoyiVue\RuoYi-Vue-master\personal\ui-p\src\api\system" />
+      <recent name="D:\projectFile\project\ruoyiVue\RuoYi-Vue-master\personal\ui-p\src\views\system\dict" />
+      <recent name="D:\projectFile\project\ruoyiVue\RuoYi-Vue-master\personal\ui-p\src\views\study\bugRecords\components" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\projectFile\project\ruoyiVue\RuoYi-Vue-master\personal\person-system\src\main\java\com\person\system\controller" />
+      <recent name="D:\projectFile\project\ruoyiVue\RuoYi-Vue-master\personal\person-system\src\main\java\com\person\system\service\impl" />
+      <recent name="D:\projectFile\project\ruoyiVue\RuoYi-Vue-master\personal\person-common\src\main\java\com\person\common\domain" />
+      <recent name="D:\projectFile\project\ruoyiVue\RuoYi-Vue-master\personal\person-system\src\main\java\com\person\system\mapper" />
+      <recent name="D:\projectFile\project\ruoyiVue\RuoYi-Vue-master\personal\person-system\src\main\resources\mapper" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.person.common.domain.dto" />
+      <recent name="com.person.study.query" />
+      <recent name="com.person.common.filter" />
+      <recent name="com.person.common.enums" />
+      <recent name="com.person.common.utils" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="&lt;!----&gt;" />
+    </option>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.PersonalApplication">
+    <configuration name="CommonController" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.person.system.controller.CommonController" />
+      <module name="person-system" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.person.system.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FileUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.person.common.utils.file.FileUtils" />
+      <module name="person-common" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.person.common.utils.file.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="IdUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.person.common.utils.IdUtils" />
+      <module name="person-common" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.person.common.utils.file.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LocalFileService" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.person.system.commonService.file.LocalFileService" />
+      <module name="person-system" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.person.system.commonService.file.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SecurityUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.person.common.utils.SecurityUtils" />
+      <module name="person-system" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.person.common.utils.file.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PersonalApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="person-admin" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.person.PersonalApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RuoYiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="ruoyi-admin" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.ruoyi.RuoYiApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.FileUtils" />
+        <item itemvalue="Application.LocalFileService" />
+        <item itemvalue="Application.CommonController" />
+        <item itemvalue="Application.SecurityUtils" />
+        <item itemvalue="Application.IdUtils" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b7424a0e-b779-4be2-96d5-9c3b6b1f18eb" name="Changes" comment="" />
+      <created>1715071090139</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1715071090139</updated>
+      <workItem from="1715071091246" duration="77000" />
+      <workItem from="1715173222869" duration="595000" />
+      <workItem from="1715225885916" duration="1612000" />
+      <workItem from="1715239311771" duration="350000" />
+      <workItem from="1715313117116" duration="497000" />
+      <workItem from="1715323937818" duration="1639000" />
+      <workItem from="1715326030198" duration="5836000" />
+      <workItem from="1715333712197" duration="17850000" />
+      <workItem from="1715409275503" duration="114000" />
+      <workItem from="1715409465311" duration="35944000" />
+      <workItem from="1715592129477" duration="27375000" />
+      <workItem from="1715674469093" duration="4696000" />
+      <workItem from="1715738113093" duration="8570000" />
+      <workItem from="1715766472770" duration="17000" />
+      <workItem from="1715847670424" duration="6391000" />
+      <workItem from="1715859842255" duration="18665000" />
+      <workItem from="1715931922439" duration="2819000" />
+      <workItem from="1715934848426" duration="4303000" />
+      <workItem from="1715939325058" duration="6912000" />
+      <workItem from="1715999399791" duration="289000" />
+      <workItem from="1716000503865" duration="10712000" />
+      <workItem from="1716021503665" duration="64000" />
+      <workItem from="1716021806869" duration="5640000" />
+      <workItem from="1716175001183" duration="11822000" />
+      <workItem from="1716191772892" duration="5366000" />
+      <workItem from="1716197217929" duration="17808000" />
+      <workItem from="1716263425827" duration="17333000" />
+      <workItem from="1716345465085" duration="36125000" />
+      <workItem from="1716451334734" duration="8210000" />
+      <workItem from="1716462576170" duration="4949000" />
+      <workItem from="1716518067316" duration="5680000" />
+      <workItem from="1716531919314" duration="18373000" />
+      <workItem from="1716556893717" duration="31418000" />
+      <workItem from="1716861218343" duration="28203000" />
+      <workItem from="1716950102401" duration="598000" />
+      <workItem from="1716951313547" duration="14960000" />
+      <workItem from="1716972363754" duration="1334000" />
+      <workItem from="1716973929962" duration="35000" />
+      <workItem from="1716974058639" duration="665000" />
+      <workItem from="1716984443164" duration="1350000" />
+      <workItem from="1717035232687" duration="3114000" />
+      <workItem from="1717049656314" duration="614000" />
+      <workItem from="1717064689037" duration="1713000" />
+      <workItem from="1717068196130" duration="692000" />
+      <workItem from="1717069136999" duration="850000" />
+      <workItem from="1717121028512" duration="37000" />
+      <workItem from="1717124815784" duration="1667000" />
+      <workItem from="1717136006063" duration="16960000" />
+      <workItem from="1717224163401" duration="984000" />
+      <workItem from="1717225316240" duration="2781000" />
+      <workItem from="1717228339699" duration="9446000" />
+      <workItem from="1717378503702" duration="20120000" />
+      <workItem from="1717412878055" duration="4539000" />
+      <workItem from="1717465648042" duration="12267000" />
+      <workItem from="1717487795679" duration="3885000" />
+      <workItem from="1717676046560" duration="623000" />
+      <workItem from="1717757972936" duration="16000" />
+      <workItem from="1718084074614" duration="85346000" />
+      <workItem from="1718529602332" duration="7863000" />
+      <workItem from="1718593844489" duration="597000" />
+      <workItem from="1718602586499" duration="6994000" />
+      <workItem from="1718618841572" duration="1965000" />
+      <workItem from="1718682576647" duration="662000" />
+      <workItem from="1718693576641" duration="9862000" />
+      <workItem from="1718709610644" duration="1121000" />
+    </task>
+    <task id="LOCAL-00001" summary="初次提交代码">
+      <option name="closed" value="true" />
+      <created>1718617033765</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1718617033765</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="初次提交代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="初次提交代码" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="SpringBootApplicationConfigurationType">
+        <watch expression="format" />
+        <watch expression="format" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

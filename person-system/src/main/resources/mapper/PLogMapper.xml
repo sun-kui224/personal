@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.person.system.mapper.PLogMapper">
+
+    <resultMap type="PLog" id="PLogResult">
+                <result property="id"    column="id"    />
+                <result property="title"    column="title"    />
+                <result property="operType"    column="oper_type"    />
+                <result property="method"    column="method"    />
+                <result property="requestMethod"    column="request_method"    />
+                <result property="operName"    column="oper_name"    />
+                <result property="reqUrl"    column="req_url"    />
+                <result property="operIp"    column="oper_ip"    />
+                <result property="reqParam"    column="req_param"    />
+                <result property="resResult"    column="res_result"    />
+                <result property="operStatus"    column="oper_status"    />
+                <result property="errorMsg"    column="error_msg"    />
+                <result property="operTime"    column="oper_time"    />
+                <result property="costTime"    column="cost_time"    />
+    </resultMap>
+
+    <sql id="selectPLogVo">
+        select id, title, oper_type, method, request_method, oper_name, req_url, oper_ip, req_param, res_result, oper_status, error_msg, oper_time, cost_time from p_log
+    </sql>
+
+    <select id="selectPLogById" parameterType="Long" resultMap="PLogResult">
+        <include refid="selectPLogVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectPLogList" parameterType="LogQuery" resultMap="PLogResult">
+        <include refid="selectPLogVo"/>
+        <where>
+            <if test="title != null  and title != ''">and title like concat('%', #{title}, '%')</if>
+            <if test="operType != null "> and oper_type = #{operType}</if>
+            <if test="requestMethod != null  and requestMethod != ''"> and request_method = #{requestMethod}</if>
+            <if test="operName != null  and operName != ''"> and oper_name like concat('%', #{operName}, '%')</if>
+            <if test="operStatus != null "> and oper_status = #{operStatus}</if>
+            <if test="beginTime != null "> and oper_time >= #{beginTime}</if>
+            <if test="endTime != null "> and oper_time <![CDATA[ <= ]]> #{endTime}</if>
+        </where>
+    </select>
+
+    <insert id="insertPLog" parameterType="PLog">
+        insert into p_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="title != null">title,</if>
+            <if test="operType != null">oper_type,</if>
+            <if test="method != null">method,</if>
+            <if test="requestMethod != null">request_method,</if>
+            <if test="operName != null">oper_name,</if>
+            <if test="reqUrl != null">req_url,</if>
+            <if test="operIp != null">oper_ip,</if>
+            <if test="reqParam != null">req_param,</if>
+            <if test="resResult != null">res_result,</if>
+            <if test="operStatus != null">oper_status,</if>
+            <if test="errorMsg != null">error_msg,</if>
+            <if test="operTime != null">oper_time,</if>
+            <if test="costTime != null">cost_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="title != null">#{title},</if>
+            <if test="operType != null">#{operType},</if>
+            <if test="method != null">#{method},</if>
+            <if test="requestMethod != null">#{requestMethod},</if>
+            <if test="operName != null">#{operName},</if>
+            <if test="reqUrl != null">#{reqUrl},</if>
+            <if test="operIp != null">#{operIp},</if>
+            <if test="reqParam != null">#{reqParam},</if>
+            <if test="resResult != null">#{resResult},</if>
+            <if test="operStatus != null">#{operStatus},</if>
+            <if test="errorMsg != null">#{errorMsg},</if>
+            <if test="operTime != null">#{operTime},</if>
+            <if test="costTime != null">#{costTime},</if>
+         </trim>
+    </insert>
+
+    <delete id="deletePLogByIds" parameterType="Long">
+        delete from p_log where id in
+        <foreach collection="array" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <delete id="deletePLog">
+        truncate table sys_oper_log
+    </delete>
+
+</mapper>

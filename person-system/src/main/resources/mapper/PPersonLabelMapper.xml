@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.person.system.mapper.PPersonLabelMapper">
+
+    <resultMap type="PPersonLabel" id="PPersonLabelResult">
+                <result property="id"    column="id"    />
+                <result property="pid"    column="pid"    />
+                <result property="labelName"    column="label_name"    />
+                <result property="status"    column="status"    />
+                <result property="createBy"    column="create_BY"    />
+                <result property="createDate"    column="create_date"    />
+                <result property="resourceNumber"    column="resource_number"    />
+    </resultMap>
+
+    <sql id="selectPPersonLabelVo">
+        select id, pid, label_name, status, create_by, create_date from p_person_label
+    </sql>
+
+    <select id="selectPPersonLabelById" parameterType="Long" resultMap="PPersonLabelResult">
+        <include refid="selectPPersonLabelVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectLabelChildCount" resultType="java.lang.Integer">
+        select count(*) from p_person_label where pid =#{pid}
+    </select>
+
+    <select id="selectLabelCountByName" resultType="java.lang.Integer">
+        select count(*) from p_person_label where label_name =#{labelName}
+        <if test="id !=null">
+            and id <![CDATA[ <> ]]> #{id}
+        </if>
+    </select>
+
+    <select id="selectPPersonLabelList" parameterType="LabelQuery" resultMap="PPersonLabelResult">
+        SELECT ppl.id, ppl.pid, ppl.label_name, ppl.status, ppl.create_by, ppl.create_date,
+            COUNT(plc.label_id) AS resource_number
+        FROM p_person_label ppl LEFT JOIN p_label_corr plc ON ppl.id = plc.label_id
+        <where>
+            <if test="labelName != null and labelName != ''">
+                <bind name="labelStr" value=" '%' +labelName+ '%'"/>
+                and ppl.label_name like #{labelStr}
+            </if>
+        </where>
+        GROUP BY ppl.id, ppl.pid, ppl.label_name, ppl.status, ppl.create_by, ppl.create_date
+    </select>
+
+    <select id="selectLabelListComponent" resultType="com.person.common.domain.entity.LabelEntity">
+        SELECT id , label_name as labelName FROM p_person_label
+    </select>
+
+    <insert id="insertPPersonLabel" parameterType="PPersonLabel">
+        insert into p_person_label
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="pid != null">pid,</if>
+            <if test="labelName != null">label_name,</if>
+            <if test="status != null">status,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createDate != null">create_date,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="pid != null">#{pid},</if>
+            <if test="labelName != null">#{labelName},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createDate != null">#{createDate},</if>
+         </trim>
+    </insert>
+
+    <update id="updatePPersonLabel" parameterType="PPersonLabel">
+        update p_person_label
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="pid != null">pid = #{pid},</if>
+            <if test="labelName != null">label_name = #{labelName},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="updatedBy != null">updated_by = #{updatedBy},</if>
+            <if test="updatedDate != null">updated_date = #{updatedDate},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deletePPersonLabelById" parameterType="Long">
+        delete from p_person_label where id = #{id}
+    </delete>
+
+</mapper>

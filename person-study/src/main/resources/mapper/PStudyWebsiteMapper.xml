@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.person.study.mapper.PStudyWebsiteMapper">
+
+    <resultMap type="PStudyWebsite" id="PStudyWebsiteResult">
+                <result property="id"    column="id"    />
+                <result property="picture"    column="picture"    />
+                <result property="websiteName"    column="website_name"    />
+                <result property="companyName"    column="company_name"    />
+                <result property="websiteUrl"    column="website_url"    />
+                <result property="websiteDescribe"    column="website_describe"    />
+                <result property="createBy"    column="create_by"    />
+                <result property="createDate"    column="create_date"    />
+                <result property="updateDate"    column="update_date"    />
+                <result property="delFlag"    column="del_flag"    />
+                <result property="labelList"    column="label_list"    />
+    </resultMap>
+
+    <sql id="selectPStudyWebsiteVo">
+        select id, picture, website_name, company_name , website_url, website_describe, create_by, create_date,
+               update_date, del_flag from p_study_website
+    </sql>
+
+    <select id="selectPStudyWebsiteList" parameterType="WebsiteQuery" resultMap="PStudyWebsiteResult">
+        SELECT sw.id,sw.picture,sw.website_name,sw.company_name,sw.website_url,sw.website_describe,sw.create_by,sw.create_date,
+        CONCAT('[', GROUP_CONCAT(JSON_OBJECT('id', pl.id, 'labelName', pl.label_name)),']') AS label_list
+        FROM
+        p_study_website sw LEFT JOIN p_label_corr lc ON sw.id = lc.out_id LEFT JOIN p_person_label pl ON lc.label_id = pl.id
+        where sw.del_flag = 0
+        <if test="websiteName != null  and websiteName != ''">
+          and sw.website_name like concat('%', #{websiteName}, '%')
+        </if>
+        GROUP BY
+        sw.id,sw.picture,sw.website_name,sw.company_name,sw.website_url,sw.website_describe,sw.create_by,sw.create_date
+        order by sw.create_date desc
+    </select>
+
+    <insert id="insertPStudyWebsite" parameterType="PStudyWebsite">
+        insert into p_study_website
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="picture != null">picture,</if>
+            <if test="websiteName != null">website_name,</if>
+            <if test="companyName != null">company_name,</if>
+            <if test="websiteUrl != null">website_url,</if>
+            <if test="websiteDescribe != null">website_describe,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createDate != null">create_date,</if>
+            <if test="delFlag != null">del_flag,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="picture != null">#{picture},</if>
+            <if test="websiteName != null">#{websiteName},</if>
+            <if test="companyName != null">#{companyName},</if>
+            <if test="websiteUrl != null">#{websiteUrl},</if>
+            <if test="websiteDescribe != null">#{websiteDescribe},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createDate != null">#{createDate},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+         </trim>
+    </insert>
+
+    <update id="updatePStudyWebsite" parameterType="PStudyWebsite">
+        update p_study_website
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="picture != null">picture = #{picture},</if>
+            <if test="websiteName != null">website_name = #{websiteName},</if>
+            <if test="companyName != null">company_name = #{companyName},</if>
+            <if test="websiteUrl != null">website_url = #{websiteUrl},</if>
+            <if test="websiteDescribe != null">website_describe = #{websiteDescribe},</if>
+            <if test="updateDate != null">update_date = #{updateDate},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deletePStudyWebsiteById" parameterType="Long">
+        update p_study_website set del_flag = 1 where id = #{id}
+    </delete>
+
+</mapper>

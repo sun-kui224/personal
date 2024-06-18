@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.person.study.mapper.PPersonUtilMapper">
+
+    <resultMap type="PPersonUtil" id="PPersonUtilResult">
+                <result property="id"    column="id"    />
+                <result property="utilName"    column="util_name"    />
+                <result property="depositUrl"    column="deposit_url"    />
+                <result property="operationUrl"    column="operation_url"    />
+                <result property="context"    column="context"    />
+                <result property="createBy"    column="create_by"    />
+                <result property="createDate"    column="create_date"    />
+                <result property="delFlag"    column="del_flag"    />
+                <result property="accessUrl"    column="access_url"    />
+    </resultMap>
+
+    <sql id="selectPPersonUtilVo">
+        select id, util_name, deposit_url, operation_url, context, create_by, create_date, del_flag, access_url from p_person_util
+    </sql>
+
+    <select id="selectPPersonUtilById" parameterType="Long" resultMap="PPersonUtilResult">
+        <include refid="selectPPersonUtilVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectPPersonUtilList" parameterType="PPersonUtil" resultMap="PPersonUtilResult">
+        <include refid="selectPPersonUtilVo"/>
+        where del_flag=0
+        <if test="utilName != null  and utilName != ''"> and util_name like concat('%', #{utilName}, '%')</if>
+    </select>
+
+    <insert id="insertPPersonUtil" parameterType="PPersonUtil">
+        insert into p_person_util
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="utilName != null">util_name,</if>
+            <if test="depositUrl != null">deposit_url,</if>
+            <if test="operationUrl != null">operation_url,</if>
+            <if test="context != null">context,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createDate != null">create_date,</if>
+            <if test="delFlag != null">del_flag,</if>
+            <if test="accessUrl != null">access_url,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="utilName != null">#{utilName},</if>
+            <if test="depositUrl != null">#{depositUrl},</if>
+            <if test="operationUrl != null">#{operationUrl},</if>
+            <if test="context != null">#{context},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createDate != null">#{createDate},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+            <if test="accessUrl != null">#{accessUrl},</if>
+         </trim>
+    </insert>
+
+    <update id="updatePPersonUtil" parameterType="PPersonUtil">
+        update p_person_util
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="utilName != null">util_name = #{utilName},</if>
+            <if test="depositUrl != null">deposit_url = #{depositUrl},</if>
+            <if test="operationUrl != null">operation_url = #{operationUrl},</if>
+            <if test="context != null">context = #{context},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createDate != null">create_date = #{createDate},</if>
+            <if test="accessUrl != null">access_url = #{accessUrl},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deletePPersonUtilById" parameterType="Long">
+        update p_person_util set del_flag = 1 where id = #{id}
+    </delete>
+
+</mapper>

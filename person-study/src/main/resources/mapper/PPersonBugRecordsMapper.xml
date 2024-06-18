@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.person.study.mapper.PPersonBugRecordsMapper">
+
+    <resultMap type="PPersonBugRecords" id="PPersonBugRecordsResult">
+                <result property="id"    column="id"    />
+                <result property="problemDescription"    column="problem_description"    />
+                <result property="appearDate"    column="appear_date"    />
+                <result property="solveProgramme"    column="solve_programme"    />
+                <result property="recordsName"    column="records_name"    />
+                <result property="createdBy"    column="create_by"    />
+                <result property="createdDate"    column="create_date"    />
+                <result property="updateDate"    column="update_date"    />
+                <result property="delFlag"    column="del_flag"    />
+                <result property="labelList"    column="label_list"    />
+    </resultMap>
+
+    <sql id="selectPPersonBugRecordsVo">
+        select id,problem_description,solve_programme, records_name,appear_date, create_by,create_date
+        from p_person_bug_records
+    </sql>
+
+    <select id="selectPPersonBugRecordsById" parameterType="Long" resultMap="PPersonBugRecordsResult">
+        <include refid="selectPPersonBugRecordsVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectPPersonBugRecordsList" parameterType="bugRecordsQuery" resultMap="PPersonBugRecordsResult">
+        select sb.id,sb.problem_description,sb.solve_programme, sb.records_name,sb.appear_date, sb.create_by,sb.create_date,
+        CONCAT('[', GROUP_CONCAT(JSON_OBJECT('id', pl.id, 'labelName', pl.label_name)),']') AS label_list
+        from p_person_bug_records sb LEFT JOIN p_label_corr lc ON sb.id = lc.out_id LEFT JOIN p_person_label pl ON lc.label_id = pl.id
+        where sb.del_flag = 0
+        <if test="recordsName != null and recordsName != ''">
+            <bind name="recordsStr" value=" '%' +recordsName+ '%'"/>
+            sb.records_name like #{recordsStr}
+        </if>
+        <if test="startTime != null and endTime != null">
+            and sb.appear_date >= #{startTime}
+            and sb.appear_date <![CDATA[ <= ]]> #{endTime}
+        </if>
+        GROUP BY
+        sb.id,sb.problem_description,sb.solve_programme, sb.records_name,sb.appear_date, sb.create_by,sb.create_date
+        order by sb.create_date desc
+    </select>
+
+    <insert id="insertPPersonBugRecords" parameterType="PPersonBugRecords">
+        insert into p_person_bug_records
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="problemDescription != null">problem_description,</if>
+            <if test="appearDate != null">appear_date,</if>
+            <if test="solveProgramme != null">solve_programme,</if>
+            <if test="recordsName != null">records_name,</if>
+            <if test="createdBy != null">create_by,</if>
+            <if test="createdDate != null">create_date,</if>
+            <if test="delFlag != null">del_flag,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="problemDescription != null">#{problemDescription},</if>
+            <if test="appearDate != null">#{appearDate},</if>
+            <if test="solveProgramme != null">#{solveProgramme},</if>
+            <if test="recordsName != null">#{recordsName},</if>
+            <if test="createdBy != null">#{createdBy},</if>
+            <if test="createdDate != null">#{createdDate},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+         </trim>
+    </insert>
+
+    <update id="updatePPersonBugRecords" parameterType="PPersonBugRecords">
+        update p_person_bug_records
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="problemDescription != null">problem_description = #{problemDescription},</if>
+            <if test="appearDate != null">appear_date = #{appearDate},</if>
+            <if test="solveProgramme != null">solve_programme = #{solveProgramme},</if>
+            <if test="recordsName != null">records_name = #{recordsName},</if>
+            <if test="updateDate != null">update_date = #{updateDate},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deletePPersonBugRecordsById" parameterType="Long">
+        update p_person_bug_records set del_flag = 1 where id = #{id}
+    </delete>
+
+</mapper>

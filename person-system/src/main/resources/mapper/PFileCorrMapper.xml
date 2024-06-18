@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.person.system.mapper.PFileCorrMapper">
+
+    <resultMap type="PFileCorr" id="PFileCorrResult">
+                <result property="fileId"    column="file_id"    />
+                <result property="outId"    column="out_id"    />
+    </resultMap>
+
+    <sql id="selectPFileCorrVo">
+        select file_id, out_id from p_file_corr
+    </sql>
+
+    <select id="selectPFileCorrByFileId" parameterType="Long" resultMap="PFileCorrResult">
+        <include refid="selectPFileCorrVo"/>
+        where file_id = #{fileId}
+    </select>
+
+    <select id="selectPFileCorrList" parameterType="PFileCorr" resultMap="PFileCorrResult">
+        <include refid="selectPFileCorrVo"/>
+        <where>
+        </where>
+    </select>
+
+    <insert id="insertPFileCorr" parameterType="PFileCorr">
+        insert into p_file_corr
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="fileId != null">file_id,</if>
+            <if test="outId != null">out_id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="fileId != null">#{fileId},</if>
+            <if test="outId != null">#{outId},</if>
+         </trim>
+    </insert>
+
+    <update id="updatePFileCorr" parameterType="PFileCorr">
+        update p_file_corr
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="outId != null">out_id = #{outId},</if>
+        </trim>
+        where file_id = #{fileId}
+    </update>
+
+    <delete id="deletePFileCorrByFileId" parameterType="Long">
+        delete from p_file_corr where file_id = #{fileId}
+    </delete>
+
+</mapper>

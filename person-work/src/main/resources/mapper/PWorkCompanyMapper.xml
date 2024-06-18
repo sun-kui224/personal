@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.person.work.mapper.PWorkCompanyMapper">
+
+    <resultMap type="PWorkCompany" id="PWorkCompanyResult">
+                <result property="id"    column="id"    />
+                <result property="companyName"    column="company_name"    />
+                <result property="employmentDate"    column="employment_date"    />
+                <result property="resignationDate"    column="resignation_date"    />
+                <result property="companyPlace"    column="company_place"    />
+                <result property="companyPeople"    column="company_people"    />
+                <result property="upMarket"    column="up_market"    />
+                <result property="companyScore"    column="company_score"    />
+                <result property="createBy"    column="create_by"    />
+                <result property="createDate"    column="create_date"    />
+                <result property="updateDate"    column="update_date"    />
+                <result property="delFlag"    column="del_flag"    />
+    </resultMap>
+
+    <sql id="selectPWorkCompanyVo">
+        select id, company_name, employment_date, resignation_date, company_place, company_people, up_market, company_score, create_by, create_date, update_date, del_flag from p_work_company
+    </sql>
+
+    <select id="selectPWorkCompanyById" parameterType="String" resultMap="PWorkCompanyResult">
+        <include refid="selectPWorkCompanyVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectPWorkCompanyList" parameterType="PWorkCompany" resultMap="PWorkCompanyResult">
+        <include refid="selectPWorkCompanyVo"/>
+        <where>
+            <if test="companyName != null  and companyName != ''"> and company_name like concat('%', #{companyName}, '%')</if>
+            <if test="employmentDate != null "> and employment_date = #{employmentDate}</if>
+            <if test="resignationDate != null "> and resignation_date = #{resignationDate}</if>
+            <if test="companyPlace != null  and companyPlace != ''"> and company_place = #{companyPlace}</if>
+            <if test="companyPeople != null "> and company_people = #{companyPeople}</if>
+            <if test="upMarket != null "> and up_market = #{upMarket}</if>
+            <if test="companyScore != null "> and company_score = #{companyScore}</if>
+            <if test="createDate != null "> and create_date = #{createDate}</if>
+            <if test="updateDate != null "> and update_date = #{updateDate}</if>
+        </where>
+    </select>
+
+    <insert id="insertPWorkCompany" parameterType="PWorkCompany">
+        insert into p_work_company
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="companyName != null">company_name,</if>
+            <if test="employmentDate != null">employment_date,</if>
+            <if test="resignationDate != null">resignation_date,</if>
+            <if test="companyPlace != null">company_place,</if>
+            <if test="companyPeople != null">company_people,</if>
+            <if test="upMarket != null">up_market,</if>
+            <if test="companyScore != null">company_score,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createDate != null">create_date,</if>
+            <if test="updateDate != null">update_date,</if>
+            <if test="delFlag != null">del_flag,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="companyName != null">#{companyName},</if>
+            <if test="employmentDate != null">#{employmentDate},</if>
+            <if test="resignationDate != null">#{resignationDate},</if>
+            <if test="companyPlace != null">#{companyPlace},</if>
+            <if test="companyPeople != null">#{companyPeople},</if>
+            <if test="upMarket != null">#{upMarket},</if>
+            <if test="companyScore != null">#{companyScore},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createDate != null">#{createDate},</if>
+            <if test="updateDate != null">#{updateDate},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+         </trim>
+    </insert>
+
+    <update id="updatePWorkCompany" parameterType="PWorkCompany">
+        update p_work_company
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="companyName != null">company_name = #{companyName},</if>
+            <if test="employmentDate != null">employment_date = #{employmentDate},</if>
+            <if test="resignationDate != null">resignation_date = #{resignationDate},</if>
+            <if test="companyPlace != null">company_place = #{companyPlace},</if>
+            <if test="companyPeople != null">company_people = #{companyPeople},</if>
+            <if test="upMarket != null">up_market = #{upMarket},</if>
+            <if test="companyScore != null">company_score = #{companyScore},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createDate != null">create_date = #{createDate},</if>
+            <if test="updateDate != null">update_date = #{updateDate},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deletePWorkCompanyById" parameterType="Long">
+        delete from p_work_company where id = #{id}
+    </delete>
+
+</mapper>

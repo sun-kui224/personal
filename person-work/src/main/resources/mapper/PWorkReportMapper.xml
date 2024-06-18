@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.person.work.mapper.PWorkReportMapper">
+
+    <resultMap type="PWorkReport" id="PWorkReportResult">
+                <result property="id"    column="id"    />
+                <result property="context"    column="context"    />
+                <result property="createDate"    column="create_date"    />
+                <result property="createBy"    column="create_by"    />
+                <result property="updateDate"    column="update_date"    />
+                <result property="delFlag"    column="del_flag"    />
+                <result property="fileUrl"    column="file_url"    />
+    </resultMap>
+
+    <sql id="selectPWorkReportVo">
+        select id, context, create_date, create_by, update_date, del_flag, file_url from p_work_report
+    </sql>
+
+    <select id="selectPWorkReportById" parameterType="Long" resultMap="PWorkReportResult">
+        <include refid="selectPWorkReportVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectPWorkReportList" parameterType="PWorkReport" resultMap="PWorkReportResult">
+        <include refid="selectPWorkReportVo"/>
+        <where>
+            <if test="context != null  and context != ''"> and context = #{context}</if>
+            <if test="createDate != null "> and create_date = #{createDate}</if>
+            <if test="updateDate != null "> and update_date = #{updateDate}</if>
+            <if test="fileUrl != null  and fileUrl != ''"> and file_url = #{fileUrl}</if>
+        </where>
+    </select>
+
+    <insert id="insertPWorkReport" parameterType="PWorkReport">
+        insert into p_work_report
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="context != null">context,</if>
+            <if test="createDate != null">create_date,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateDate != null">update_date,</if>
+            <if test="delFlag != null">del_flag,</if>
+            <if test="fileUrl != null">file_url,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="context != null">#{context},</if>
+            <if test="createDate != null">#{createDate},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateDate != null">#{updateDate},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+            <if test="fileUrl != null">#{fileUrl},</if>
+         </trim>
+    </insert>
+
+    <update id="updatePWorkReport" parameterType="PWorkReport">
+        update p_work_report
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="context != null">context = #{context},</if>
+            <if test="createDate != null">create_date = #{createDate},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateDate != null">update_date = #{updateDate},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+            <if test="fileUrl != null">file_url = #{fileUrl},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deletePWorkReportById" parameterType="Long">
+        delete from p_work_report where id = #{id}
+    </delete>
+
+</mapper>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.person.system.mapper.PDictTypeMapper">
+
+    <resultMap type="PDictType" id="PDictTypeResult">
+                <result property="id"    column="id"    />
+                <result property="dictName"    column="dict_name"    />
+                <result property="dictType"    column="dict_type"    />
+                <result property="status"    column="status"    />
+                <result property="createBy"    column="create_by"    />
+                <result property="createTime"    column="create_time"    />
+                <result property="updateBy"    column="update_by"    />
+                <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectPDictTypeVo">
+        select id, dict_name, dict_type, status, create_by, create_time, update_by, update_time from p_dict_type
+    </sql>
+
+    <select id="selectPDictTypeById" parameterType="Long" resultMap="PDictTypeResult">
+        <include refid="selectPDictTypeVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectPDictTypeByDictType" resultType="com.person.common.domain.PDictType">
+        <include refid="selectPDictTypeVo"/>
+        where dict_type = #{dictType}
+        <if test="id != null">
+           and id <![CDATA[ <> ]]> #{id}
+        </if>
+    </select>
+
+    <select id="selectPDictTypeList" resultMap="PDictTypeResult">
+        <include refid="selectPDictTypeVo"/>
+        <where>
+            <if test="dictName != null  and dictName != ''"> and dict_name like concat('%', #{dictName}, '%')</if>
+            <if test="dictType != null  and dictType != ''"> and dict_type like concat('%', #{dictType}, '%')</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+        </where>
+    </select>
+
+    <insert id="insertPDictType" parameterType="PDictType">
+        insert into p_dict_type
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="dictName != null">dict_name,</if>
+            <if test="dictType != null">dict_type,</if>
+            <if test="status != null">status,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="dictName != null">#{dictName},</if>
+            <if test="dictType != null">#{dictType},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updatePDictType" parameterType="PDictType">
+        update p_dict_type
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="dictName != null">dict_name = #{dictName},</if>
+            <if test="dictType != null">dict_type = #{dictType},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deletePDictTypeById" parameterType="Long">
+        delete from p_dict_type where id = #{id}
+    </delete>
+
+    <update id="stopPDictTypeById">
+        update p_dict_type set status = 1 where id = #{id}
+    </update>
+
+    <update id="startPDictTypeById">
+        update p_dict_type set status = 0 where id = #{id}
+    </update>
+</mapper>

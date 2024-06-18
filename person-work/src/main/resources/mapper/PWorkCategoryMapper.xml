@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.person.work.mapper.PWorkCategoryMapper">
+
+    <resultMap type="PWorkCategory" id="PWorkCategoryResult">
+                <result property="id"    column="id"    />
+                <result property="createBy"    column="create_by"    />
+                <result property="createDate"    column="create_date"    />
+                <result property="categoryName"    column="category_name"    />
+                <result property="delFlag"    column="del_flag"    />
+    </resultMap>
+
+    <sql id="selectPWorkCategoryVo">
+        select id, create_by, create_date, category_name, del_flag from p_work_category
+    </sql>
+
+    <select id="selectPWorkCategoryById" parameterType="Long" resultMap="PWorkCategoryResult">
+        <include refid="selectPWorkCategoryVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectPWorkCategoryList" parameterType="PWorkCategory" resultMap="PWorkCategoryResult">
+        <include refid="selectPWorkCategoryVo"/>
+        <where>
+            <if test="createDate != null "> and create_date = #{createDate}</if>
+            <if test="categoryName != null  and categoryName != ''"> and category_name like concat('%', #{categoryName}, '%')</if>
+        </where>
+    </select>
+
+    <insert id="insertPWorkCategory" parameterType="PWorkCategory">
+        insert into p_work_category
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createDate != null">create_date,</if>
+            <if test="categoryName != null">category_name,</if>
+            <if test="delFlag != null">del_flag,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createDate != null">#{createDate},</if>
+            <if test="categoryName != null">#{categoryName},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+         </trim>
+    </insert>
+
+    <update id="updatePWorkCategory" parameterType="PWorkCategory">
+        update p_work_category
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createDate != null">create_date = #{createDate},</if>
+            <if test="categoryName != null">category_name = #{categoryName},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deletePWorkCategoryById" parameterType="Long">
+        delete from p_work_category where id = #{id}
+    </delete>
+
+</mapper>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.person.work.mapper.PWorkCompanyProjectMapper">
+
+    <resultMap type="PWorkCompanyProject" id="PWorkCompanyProjectResult">
+                <result property="id"    column="id"    />
+                <result property="projectName"    column="project_name"    />
+                <result property="projectDescribe"    column="project_describe"    />
+                <result property="projectPlace"    column="project_place"    />
+                <result property="createBy"    column="create_by"    />
+                <result property="createDate"    column="create_date"    />
+                <result property="updateDate"    column="update_date"    />
+                <result property="delFlag"    column="del_flag"    />
+    </resultMap>
+
+    <sql id="selectPWorkCompanyProjectVo">
+        select id, project_name, project_describe, project_place, create_by, create_date, update_date, del_flag from p_work_company_project
+    </sql>
+
+    <select id="selectPWorkCompanyProjectById" parameterType="Long" resultMap="PWorkCompanyProjectResult">
+        <include refid="selectPWorkCompanyProjectVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectPWorkCompanyProjectList" parameterType="PWorkCompanyProject" resultMap="PWorkCompanyProjectResult">
+        <include refid="selectPWorkCompanyProjectVo"/>
+        <where>
+            <if test="projectName != null  and projectName != ''"> and project_name like concat('%', #{projectName}, '%')</if>
+            <if test="projectDescribe != null  and projectDescribe != ''"> and project_describe = #{projectDescribe}</if>
+            <if test="projectPlace != null  and projectPlace != ''"> and project_place = #{projectPlace}</if>
+            <if test="createDate != null "> and create_date = #{createDate}</if>
+            <if test="updateDate != null "> and update_date = #{updateDate}</if>
+        </where>
+    </select>
+
+    <insert id="insertPWorkCompanyProject" parameterType="PWorkCompanyProject">
+        insert into p_work_company_project
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="projectName != null">project_name,</if>
+            <if test="projectDescribe != null">project_describe,</if>
+            <if test="projectPlace != null">project_place,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createDate != null">create_date,</if>
+            <if test="updateDate != null">update_date,</if>
+            <if test="delFlag != null">del_flag,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="projectName != null">#{projectName},</if>
+            <if test="projectDescribe != null">#{projectDescribe},</if>
+            <if test="projectPlace != null">#{projectPlace},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createDate != null">#{createDate},</if>
+            <if test="updateDate != null">#{updateDate},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+         </trim>
+    </insert>
+
+    <update id="updatePWorkCompanyProject" parameterType="PWorkCompanyProject">
+        update p_work_company_project
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="projectName != null">project_name = #{projectName},</if>
+            <if test="projectDescribe != null">project_describe = #{projectDescribe},</if>
+            <if test="projectPlace != null">project_place = #{projectPlace},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createDate != null">create_date = #{createDate},</if>
+            <if test="updateDate != null">update_date = #{updateDate},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deletePWorkCompanyProjectById" parameterType="Long">
+        delete from p_work_company_project where id = #{id}
+    </delete>
+
+</mapper>

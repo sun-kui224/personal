@@ -1,0 +1,71 @@
+{
+  "name": "dynamic_router",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@achrinza/node-ipc": "^10.1.11",
+    "@js-preview/docx": "^1.6.2",
+    "@riophae/vue-treeselect": "^0.4.0",
+    "@vue-office/docx": "^1.6.2",
+    "@vue-office/excel": "^1.7.8",
+    "@vue-office/pdf": "^2.0.2",
+    "@vue/composition-api": "^1.7.2",
+    "@wangeditor/editor-for-vue": "^1.0.2",
+    "axios": "^0.21.3",
+    "core-js": "^3.6.5",
+    "docx-preview": "^0.3.2",
+    "element-ui": "^2.15.6",
+    "fuse.js": "^7.0.0",
+    "js-cookie": "^3.0.5",
+    "less": "^4.2.0",
+    "less-loader": "^7.3.0",
+    "normalize.css": "^8.0.1",
+    "nprogress": "^0.2.0",
+    "sass": "^1.77.2",
+    "sass-loader": "^7.0.3",
+    "screenfull": "^5.0.2",
+    "svg-sprite-loader": "^6.0.11",
+    "v-viewer": "^1.6.4",
+    "viewerjs": "^1.10.1",
+    "vue": "^2.6.11",
+    "vue-cropper": "^0.6.4",
+    "vue-demi": "^0.14.7",
+    "vue-router": "^3.2.0",
+    "vuex": "^3.6.2"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-optional-chaining": "^7.21.0",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "cache-loader": "^4.1.0",
+    "css-loader": "^3.5.3",
+    "vue-style-loader": "^4.1.0",
+    "vue-template-compiler": "^2.6.14",
+    "webpack": "^4.47.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "@babel/eslint-parser"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

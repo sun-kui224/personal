@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.person.system.mapper.PMenuMapper">
+
+    <resultMap type="PMenu" id="PMenuResult">
+                <result property="id"    column="id"    />
+                <result property="parentId"    column="parent_id"    />
+                <result property="name"    column="name"    />
+                <result property="isCache"    column="is_cache"    />
+                <result property="hide"    column="hide"    />
+                <result property="sort"    column="sort"    />
+                <result property="delFlag"    column="del_flag"    />
+                <result property="status"    column="status"    />
+                <result property="type"    column="type"    />
+                <result property="component"    column="component"    />
+                <result property="path"    column="path"    />
+                <result property="icon"    column="icon"    />
+                <result property="createBy"    column="create_by"    />
+                <result property="createDate"    column="create_date"    />
+                <result property="updateBy"    column="update_by"    />
+                <result property="updateDate"    column="update_date"    />
+    </resultMap>
+
+    <sql id="selectPMenuVo">
+        select id, parent_id, name, sort, del_flag, hide,status, type,is_cache, component, path, icon, create_by, create_date, update_by, update_date from p_menu
+    </sql>
+
+    <select id="selectPMenuById" parameterType="Long" resultMap="PMenuResult">
+        <include refid="selectPMenuVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectPMenuList" parameterType="MenuQuery" resultMap="PMenuResult">
+        <include refid="selectPMenuVo"/>
+        where
+            del_flag=0
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="path != null  and path != ''"> and path like concat('%', #{path}, '%')</if>
+        order by sort
+    </select>
+
+    <select id="selectEffectivePMenuList" resultMap="PMenuResult">
+        <include refid="selectPMenuVo"/>
+        where del_flag=0 and status = 0
+        order by sort
+    </select>
+
+    <insert id="insertPMenu" parameterType="PMenu">
+        insert into p_menu
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="parentId != null">parent_id,</if>
+            <if test="name != null">name,</if>
+            <if test="isCache != null">is_cache,</if>
+            <if test="hide != null">hide,</if>
+            <if test="sort != null">sort,</if>
+            <if test="delFlag != null">del_flag,</if>
+            <if test="status != null">status,</if>
+            <if test="type != null">type,</if>
+            <if test="component != null">component,</if>
+            <if test="path != null">path,</if>
+            <if test="icon != null">icon,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createDate != null">create_date,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="parentId != null">#{parentId},</if>
+            <if test="name != null">#{name},</if>
+            <if test="isCache != null">#{isCache},</if>
+            <if test="hide != null">#{hide},</if>
+            <if test="sort != null">#{sort},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+            <if test="status != null">#{status},</if>
+            <if test="type != null">#{type},</if>
+            <if test="component != null">#{component},</if>
+            <if test="path != null">#{path},</if>
+            <if test="icon != null">#{icon},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createDate != null">#{createDate},</if>
+         </trim>
+    </insert>
+
+    <update id="updatePMenu" parameterType="PMenu">
+        update p_menu
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="parentId != null">parent_id = #{parentId},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="isCache != null">is_cache = #{isCache},</if>
+            <if test="hide != null">hide = #{hide},</if>
+            <if test="sort != null">sort = #{sort},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="component != null">component = #{component},</if>
+            <if test="path != null">path = #{path},</if>
+            <if test="icon != null">icon = #{icon},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateDate != null">update_date = #{updateDate},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <update id="operateMenuList">
+        update p_menu set status = #{status} where id = #{id}
+    </update>
+
+    <delete id="deletePMenuById" parameterType="Long">
+        update p_menu set del_flag = 1 where id = #{id}
+    </delete>
+
+</mapper>
