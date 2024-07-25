@@ -63,13 +63,13 @@ public class SwaggerConfig {
                         .and(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class)))
                 .paths(PathSelectors.any())
                 .build()
-                .groupName("个人")
-                .enable(true)
+                .groupName("person")
+                .enable(true);
                 /* 设置安全模式，swagger可以设置访问token */
-                .securitySchemes(securitySchemes())
-                .securityContexts(securityContexts())
-                //去除默认的响应消息
-                .useDefaultResponseMessages(false);
+//                .securitySchemes(securitySchemes())
+//                .securityContexts(securityContexts())
+//                //去除默认的响应消息
+//                .useDefaultResponseMessages(false);
         return docket;
     }
     /**

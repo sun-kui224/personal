@@ -3,6 +3,7 @@ package com.person.system.controller;
 import java.util.List;
 
 import com.person.common.annotation.Log;
+import com.person.common.annotation.OnlyPro;
 import com.person.common.base.controller.BaseController;
 import com.person.common.base.domain.AjaxResult;
 import com.person.common.domain.PDictData;
@@ -64,6 +65,7 @@ public class PDictDataController extends BaseController
      */
     @ApiOperation("新增字典数据")
     @Log(title = "字典数据", businessType = OperateType.INSERT)
+    @OnlyPro(value = "dictValue")
     @PostMapping
     public AjaxResult add(@RequestBody @Validated PDictDataDto pDictDataDto)
     {
